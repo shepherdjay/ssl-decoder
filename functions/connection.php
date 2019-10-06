@@ -608,7 +608,7 @@ function ssl_conn_metadata($data,$fastcheck=0) {
         } else if ( $key == "tlsv1.1") {
           echo '<p><span class="glyphicon glyphicon-ok"></span> - TLSv1.1 (Supported)</p>';
         } else if ( $key == "tlsv1.0") {
-          echo '<p><span class="glyphicon glyphicon-ok"></span> - TLSv1.0 (Supported)</p>';
+          echo '<p><span class="text-danger glyphicon glyphicon-ok"></span> - <span class="text-danger">TLSv1.0 (Supported) </span>';
         } else if ( $key == "sslv3") {
           echo '<p><span class="text-danger glyphicon glyphicon-ok"></span> - <span class="text-danger">SSLv3 (Supported) </span>';
           echo "<a href='https://blog.mozilla.org/security/2014/10/14/the-poodle-attack-and-the-end-of-ssl-3-0/' data-toggle='tooltip' data-placement='top' title='SSLv3 is old and broken. It makes you vulerable for the POODLE attack. Click the question mark for more info.'><span class='glyphicon glyphicon-question-sign' aria-hidden='true'></span></a></p>";
@@ -625,7 +625,7 @@ function ssl_conn_metadata($data,$fastcheck=0) {
         } else if ( $key == "tlsv1.1") {
           echo '<p><span class="glyphicon glyphicon-remove"></span> - TLSv1.1  (Not supported)</p>';
         } else if ( $key == "tlsv1.0") {
-          echo '<p><span class="glyphicon glyphicon-remove"></span> - TLSv1.0  (Not supported)</p>';
+          echo '<p><span class="text-success glyphicon glyphicon-remove"></span> - <span class="text-success">TLSv1.0 (Not supported)</span></p>';
         } else if ( $key == "sslv3") {
           echo '<p><span class="text-success glyphicon glyphicon-remove"></span> - <span class="text-success">SSLv3 (Not supported)</span></p>';
         } else if ( $key == "sslv2") {
@@ -1003,6 +1003,9 @@ function ssl_conn_metadata_json($host, $ip, $port, $read_stream, $chain_data=nul
           }
           if ( $key == "sslv3") {
             $result["warning"][] = 'SSLv3 supported. Please disable and upgrade to a newer protocol like TLSv1.2.';
+          }
+          if ( $key == "tlsv1.0") {
+              $result["warning"][] = 'TLSv1.0 supported. Please disable and upgrade to a newer protocol like TLSv1.2.';
           }
         } else {
           if ( $key == "tlsv1.2") {
